@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LastTill | TillCheck</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+
+            <a href="dashboard.html" class="brand">
+                <div class="brand-logo">L</div>
+                <div class="brand-name">LastTill</div>
+            </a>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="nav-link">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </a>
+
+                <a href="expense.html" class="nav-link">
+                    <i data-lucide="circle-plus"></i>
+                    Add Expense
+                </a>
+
+                <a href="budget.html" class="nav-link">
+                    <i data-lucide="wallet-cards"></i>
+                    Budget
+                </a>
+
+                <a href="tillcheck.html" class="nav-link active">
+                    <i data-lucide="circle-check-big"></i>
+                    TillCheck
+                </a>
+
+                <a href="savings.html" class="nav-link">
+                    <i data-lucide="target"></i>
+                    Savings Goal
+                </a>
+
+                <a href="emergency.html" class="nav-link">
+                    <i data-lucide="shield-plus"></i>
+                    Emergency Fund
+                </a>
+
+            </nav>
+
+
+            <div class="profile-menu-wrapper">
+
+                <button class="sidebar-profile" id="profileButton">
+
+                    <div class="profile-avatar">R</div>
+
+                    <div class="profile-details">
+                        <strong>Rita Nkosi</strong>
+                        <span>Student</span>
+                    </div>
+
+                    <i data-lucide="chevron-up" class="profile-chevron"></i>
+
+                </button>
+
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <a href="profile.html">
+                        <i data-lucide="user"></i>
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        <i data-lucide="settings"></i>
+                        Settings
+                    </a>
+
+                    <a href="index.html" class="logout-link">
+                        <i data-lucide="log-out"></i>
+                        Log Out
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <main class="app-main">
+
+            <header class="page-header">
+
+                <div class="page-title">
+                    <p class="eyebrow">Smart spending</p>
+                    <h1>TillCheck</h1>
+                    <p>
+                        See how a purchase affects your month before you spend.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <section class="content-grid-2">
+
+                <article class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <p class="card-label">Check a purchase</p>
+                            <h3>Can I afford this?</h3>
+                        </div>
+
+                        <div class="card-icon">
+                            <i data-lucide="scan-line"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+
+                            <label>
+                                What do you want to buy?
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                placeholder="e.g. Dinner with friends">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Amount
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="number"
+                                placeholder="R180">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Category
+                            </label>
+
+                            <select class="form-control">
+
+                                <option>Food & Dining</option>
+                                <option>Groceries</option>
+                                <option>Transport</option>
+                                <option>Social</option>
+                                <option>Clothing</option>
+                                <option>Data & Airtime</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button class="btn btn-primary">
+                            <i data-lucide="circle-check-big"></i>
+                            Check Purchase
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <div class="dashboard-column">
+
+                    <article class="card card-green">
+
+                        <div class="card-heading">
+                            <div>
+                                <p class="card-label">Current position</p>
+                                <h3>Your Money Today</h3>
+                            </div>
+                        </div>
+
+                        <div class="summary-stat">
+                            <span>Current balance</span>
+                            <strong>R856</strong>
+                        </div>
+
+                        <div class="summary-stat" style="margin-top:12px;">
+                            <span>Days remaining</span>
+                            <strong>18 days</strong>
+                        </div>
+
+                        <div class="summary-stat" style="margin-top:12px;">
+                            <span>Safe daily spending</span>
+                            <strong>R47.56</strong>
+                        </div>
+
+                    </article>
+
+
+                    <article class="card tillcheck-feature">
+
+                        <div class="card-heading">
+
+                            <div>
+                                <p class="card-label">Example result</p>
+                                <h3>After Spending R180</h3>
+                            </div>
+
+                            <span class="tillcheck-badge">
+                                CAUTION
+                            </span>
+
+                        </div>
+
+
+                        <div class="tillcheck-preview">
+
+                            <div class="tillcheck-stat">
+                                <span>Before</span>
+                                <strong>R47.56/day</strong>
+                            </div>
+
+                            <div class="tillcheck-arrow">
+                                <i data-lucide="arrow-right"></i>
+                            </div>
+
+                            <div class="tillcheck-stat">
+                                <span>After</span>
+                                <strong>R37.56/day</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="status-box status-warning">
+                            You can afford it, but your safe daily
+                            spending will drop by R10.00.
+                        </div>
+
+                        <div class="summary-stat">
+                            <span>New balance</span>
+                            <strong>R676</strong>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LastTill | Profile</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+
+            <a href="dashboard.html" class="brand">
+                <div class="brand-logo">L</div>
+                <div class="brand-name">LastTill</div>
+            </a>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="nav-link">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </a>
+
+                <a href="expense.html" class="nav-link">
+                    <i data-lucide="circle-plus"></i>
+                    Add Expense
+                </a>
+
+                <a href="budget.html" class="nav-link">
+                    <i data-lucide="wallet-cards"></i>
+                    Budget
+                </a>
+
+                <a href="tillcheck.html" class="nav-link">
+                    <i data-lucide="circle-check-big"></i>
+                    TillCheck
+                </a>
+
+                <a href="savings.html" class="nav-link">
+                    <i data-lucide="target"></i>
+                    Savings Goal
+                </a>
+
+                <a href="emergency.html" class="nav-link">
+                    <i data-lucide="shield-plus"></i>
+                    Emergency Fund
+                </a>
+
+            </nav>
+
+
+            <div class="profile-menu-wrapper">
+
+                <button class="sidebar-profile" id="profileButton">
+
+                    <div class="profile-avatar">R</div>
+
+                    <div class="profile-details">
+                        <strong>Rita Nkosi</strong>
+                        <span>Student</span>
+                    </div>
+
+                    <i data-lucide="chevron-up" class="profile-chevron"></i>
+
+                </button>
+
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <a href="profile.html">
+                        <i data-lucide="user"></i>
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        <i data-lucide="settings"></i>
+                        Settings
+                    </a>
+
+                    <a href="index.html" class="logout-link">
+                        <i data-lucide="log-out"></i>
+                        Log Out
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <main class="app-main">
+
+            <header class="page-header">
+
+                <div class="page-title">
+                    <p class="eyebrow">Account</p>
+                    <h1>My Profile</h1>
+                    <p>
+                        View and manage your personal account information.
+                    </p>
+                </div>
+
+                <button class="btn btn-primary">
+                    <i data-lucide="pencil"></i>
+                    Edit Profile
+                </button>
+
+            </header>
+
+
+            <section class="content-grid-2">
+
+                <article class="card card-green">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <p class="card-label">Profile overview</p>
+                            <h3>Rita Nkosi</h3>
+                        </div>
+
+                        <div class="card-icon">
+                            <i data-lucide="user-round"></i>
+                        </div>
+
+                    </div>
+
+                    <div style="
+                        display:flex;
+                        align-items:center;
+                        gap:18px;
+                        margin-bottom:22px;
+                    ">
+
+                        <div style="
+                            width:72px;
+                            height:72px;
+                            border-radius:50%;
+                            background:#d9ead7;
+                            color:#173f2a;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:28px;
+                            font-weight:800;
+                        ">
+                            R
+                        </div>
+
+                        <div>
+                            <h2 style="font-size:26px; margin-bottom:4px;">
+                                Rita Nkosi
+                            </h2>
+
+                            <span style="color:#718074;">
+                                Student
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="summary-stat">
+                        <span>Account type</span>
+                        <strong>Student</strong>
+                    </div>
+
+                    <div class="summary-stat" style="margin-top:12px;">
+                        <span>Member since</span>
+                        <strong>September 2026</strong>
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <p class="card-label">Personal details</p>
+                            <h3>Your Information</h3>
+                        </div>
+
+                        <div class="card-icon">
+                            <i data-lucide="id-card"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full name</label>
+
+                        <input
+                            class="form-control"
+                            type="text"
+                            value="Rita Nkosi"
+                            readonly>
+                    </div>
+
+                    <div class="form-group" style="margin-top:18px;">
+                        <label>Email address</label>
+
+                        <input
+                            class="form-control"
+                            type="email"
+                            value="rita@example.com"
+                            readonly>
+                    </div>
+
+                    <div class="form-group" style="margin-top:18px;">
+                        <label>Account type</label>
+
+                        <input
+                            class="form-control"
+                            type="text"
+                            value="Student"
+                            readonly>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <section style="margin-top:22px;">
+
+                <article class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <p class="card-label">Financial setup</p>
+                            <h3>Your LastTill Profile</h3>
+                        </div>
+
+                        <div class="card-icon">
+                            <i data-lucide="wallet"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="content-grid-2">
+
+                        <div class="summary-stat">
+                            <span>Monthly income</span>
+                            <strong>R1,716</strong>
+                        </div>
+
+                        <div class="summary-stat">
+                            <span>Current savings goal</span>
+                            <strong>Headphones</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="content-grid-2" style="margin-top:12px;">
+
+                        <div class="summary-stat">
+                            <span>Emergency fund</span>
+                            <strong>R85</strong>
+                        </div>
+
+                        <div class="summary-stat">
+                            <span>Safe daily spending</span>
+                            <strong>R47.56</strong>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

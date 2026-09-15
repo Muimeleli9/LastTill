@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LastTill | Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <a href="dashboard.html" class="brand">
+                <div class="brand-logo">L</div>
+                <div class="brand-name">LastTill</div>
+            </a>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="nav-link active">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </a>
+
+                <a href="expense.html" class="nav-link">
+                    <i data-lucide="circle-plus"></i>
+                    Add Expense
+                </a>
+
+                <a href="budget.html" class="nav-link">
+                    <i data-lucide="wallet-cards"></i>
+                    Budget
+                </a>
+
+                <a href="tillcheck.html" class="nav-link">
+                    <i data-lucide="circle-check-big"></i>
+                    TillCheck
+                </a>
+
+                <a href="savings.html" class="nav-link">
+                    <i data-lucide="target"></i>
+                    Savings Goal
+                </a>
+
+                <a href="emergency.html" class="nav-link">
+                    <i data-lucide="shield-plus"></i>
+                    Emergency Fund
+                </a>
+
+            </nav>
+
+
+            <!-- PROFILE -->
+            <div class="profile-menu-wrapper">
+
+                <button class="sidebar-profile" id="profileButton" type="button">
+
+                    <div class="profile-avatar">
+                        R
+                    </div>
+
+                    <div class="profile-details">
+                        <strong>Rita Nkosi</strong>
+                        <span>Student</span>
+                    </div>
+
+                    <i data-lucide="chevron-up" class="profile-chevron"></i>
+
+                </button>
+
+
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <a href="profile.html">
+                        <i data-lucide="user"></i>
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        <i data-lucide="settings"></i>
+                        Settings
+                    </a>
+
+                    <a href="index.html" class="logout-link">
+                        <i data-lucide="log-out"></i>
+                        Log Out
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="app-main">
+
+            <!-- HEADER -->
+            <header class="page-header">
+
+                <div class="page-title">
+
+                    <p class="eyebrow">
+                        September overview
+                    </p>
+
+                    <h1>
+                        Good morning, Rita 👋
+                    </h1>
+
+                    <p>
+                        Let’s make your money last until month-end.
+                    </p>
+
+                </div>
+
+
+                <div class="header-actions">
+
+                    <!-- NOTIFICATIONS -->
+                    <div class="notification-wrapper">
+
+                        <button class="notification-button" type="button">
+
+                            <i data-lucide="bell"></i>
+
+                            <span class="notification-count">
+                                3
+                            </span>
+
+                        </button>
+
+
+                        <div class="notification-dropdown">
+
+                            <div class="notification-header">
+
+                                <h3>Notifications</h3>
+
+                                <span>3 new</span>
+
+                            </div>
+
+
+                            <!-- NOTIFICATION 1 -->
+                            <div class="notification-item">
+
+                                <div class="notification-icon warning">
+                                    <i data-lucide="triangle-alert"></i>
+                                </div>
+
+                                <div class="notification-content">
+
+                                    <strong>
+                                        Groceries almost full
+                                    </strong>
+
+                                    <p>
+                                        You've used 91% of your R550
+                                        groceries budget.
+                                    </p>
+
+                                    <span class="notification-time">
+                                        Just now
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- NOTIFICATION 2 -->
+                            <div class="notification-item">
+
+                                <div class="notification-icon danger">
+                                    <i data-lucide="circle-alert"></i>
+                                </div>
+
+                                <div class="notification-content">
+
+                                    <strong>
+                                        Budget reached
+                                    </strong>
+
+                                    <p>
+                                        You've used your full R250
+                                        Family Support budget.
+                                    </p>
+
+                                    <span class="notification-time">
+                                        Today
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- NOTIFICATION 3 -->
+                            <div class="notification-item">
+
+                                <div class="notification-icon warning">
+                                    <i data-lucide="trending-down"></i>
+                                </div>
+
+                                <div class="notification-content">
+
+                                    <strong>
+                                        Spending alert
+                                    </strong>
+
+                                    <p>
+                                        Your recent spending has reduced
+                                        your safe daily amount.
+                                    </p>
+
+                                    <span class="notification-time">
+                                        Yesterday
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="notification-footer">
+                                You're all caught up
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADD EXPENSE -->
+                    <a href="expense.html" class="btn btn-primary">
+                        <i data-lucide="plus"></i>
+                        Add Expense
+                    </a>
+
+                </div>
+
+            </header>
+
+
+            <!-- BALANCE HERO -->
+            <section class="balance-hero">
+
+                <div>
+
+                    <p>
+                        Monthly Income
+                    </p>
+
+                    <h2>
+                        R1,716
+                    </h2>
+
+                    <small>
+                        September budget
+                    </small>
+
+                </div>
+
+
+                <div class="balance-divider"></div>
+
+
+                <div>
+
+                    <p>
+                        Remaining
+                    </p>
+
+                    <h2>
+                        R856
+                    </h2>
+
+                    <div class="balance-meta">
+
+                        <span>
+                            <strong>18</strong>
+                            days left
+                        </span>
+
+                        <span>
+                            Safe daily spending:
+                            <strong>R47.56</strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- DASHBOARD GRID -->
+            <section class="dashboard-grid">
+
+                <!-- LEFT -->
+                <div class="dashboard-column">
+
+                    <!-- BUDGET -->
+                    <article class="card">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <p class="card-label">
+                                    Monthly plan
+                                </p>
+
+                                <h3>
+                                    Your Budget
+                                </h3>
+
+                            </div>
+
+                            <a href="budget.html">
+                                View all
+                            </a>
+
+                        </div>
+
+
+                        <!-- GROCERIES -->
+                        <div class="budget-item">
+
+                            <div class="budget-row">
+
+                                <span>
+                                    Groceries
+                                </span>
+
+                                <strong>
+                                    R500 / R550
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    style="width: 91%;">
+                                </div>
+
+                            </div>
+
+                            <span class="progress-caption">
+                                91%
+                            </span>
+
+                        </div>
+
+
+                        <!-- TRANSPORT -->
+                        <div class="budget-item">
+
+                            <div class="budget-row">
+
+                                <span>
+                                    Transport
+                                </span>
+
+                                <strong>
+                                    R180 / R300
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    style="width: 60%;">
+                                </div>
+
+                            </div>
+
+                            <span class="progress-caption">
+                                60%
+                            </span>
+
+                        </div>
+
+
+                        <!-- FAMILY SUPPORT -->
+                        <div class="budget-item">
+
+                            <div class="budget-row">
+
+                                <span>
+                                    Family Support
+                                </span>
+
+                                <strong>
+                                    R250 / R250
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill warning"
+                                    style="width: 100%;">
+                                </div>
+
+                            </div>
+
+                            <span class="progress-caption">
+                                100%
+                            </span>
+
+                        </div>
+
+
+                        <!-- SOCIAL -->
+                        <div class="budget-item">
+
+                            <div class="budget-row">
+
+                                <span>
+                                    Social
+                                </span>
+
+                                <strong>
+                                    R80 / R150
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track">
+
+                                <div
+                                    class="progress-fill"
+                                    style="width: 53%;">
+                                </div>
+
+                            </div>
+
+                            <span class="progress-caption">
+                                53%
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- SAVINGS -->
+                    <article class="card card-green">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <p class="card-label">
+                                    Savings goal
+                                </p>
+
+                                <h3>
+                                    Headphones
+                                </h3>
+
+                            </div>
+
+                            <span class="goal-badge">
+                                15%
+                            </span>
+
+                        </div>
+
+
+                        <div class="goal-number">
+
+                            <strong>
+                                R300
+                            </strong>
+
+                            <span>
+                                of R2,000
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                style="width: 15%;">
+                            </div>
+
+                        </div>
+
+
+                        <p class="goal-note">
+                            Keep going — every contribution
+                            gets you closer.
+                        </p>
+
+
+                        <a href="savings.html" class="choose-link">
+
+                            View savings goal
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </a>
+
+                    </article>
+
+
+                    <!-- EMERGENCY FUND -->
+                    <article class="card card-warning">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <p class="card-label">
+                                    Protected money
+                                </p>
+
+                                <h3>
+                                    Emergency Fund
+                                </h3>
+
+                            </div>
+
+                            <div class="card-icon">
+                                <i data-lucide="shield-plus"></i>
+                            </div>
+
+                        </div>
+
+
+                        <div class="emergency-amount">
+
+                            <strong>
+                                R85
+                            </strong>
+
+                            <span>
+                                remaining from R150
+                            </span>
+
+                        </div>
+
+
+                        <p class="emergency-copy">
+                            This money is protected and is not
+                            included in your normal spending balance.
+                        </p>
+
+
+                        <a href="emergency.html" class="choose-link">
+
+                            Manage emergency fund
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </a>
+
+                    </article>
+
+                </div>
+
+
+                <!-- RIGHT -->
+                <div class="dashboard-column">
+
+                    <!-- TILLCHECK -->
+                    <article class="card tillcheck-feature">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <p class="card-label">
+                                    Smart spending
+                                </p>
+
+                                <h3>
+                                    TillCheck
+                                </h3>
+
+                            </div>
+
+                            <span class="tillcheck-badge">
+                                KEY FEATURE
+                            </span>
+
+                        </div>
+
+
+                        <h4>
+                            Can I afford this?
+                        </h4>
+
+
+                        <p>
+                            Check how a purchase will affect
+                            your month before you spend.
+                        </p>
+
+
+                        <div class="tillcheck-preview">
+
+                            <div class="tillcheck-stat">
+
+                                <span>
+                                    Current daily spend
+                                </span>
+
+                                <strong>
+                                    R47.56
+                                </strong>
+
+                            </div>
+
+
+                            <div class="tillcheck-arrow">
+                                <i data-lucide="arrow-right"></i>
+                            </div>
+
+
+                            <div class="tillcheck-stat">
+
+                                <span>
+                                    After R180 purchase
+                                </span>
+
+                                <strong>
+                                    R37.56
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="status-box status-warning">
+
+                            You can afford it, but your safe daily
+                            spending will drop by R10.00.
+
+                        </div>
+
+
+                        <a
+                            href="tillcheck.html"
+                            class="btn btn-primary btn-full">
+
+                            <i data-lucide="circle-check-big"></i>
+
+                            Check a Purchase
+
+                        </a>
+
+                    </article>
+
+
+                    <!-- TRANSACTIONS -->
+                    <article class="card">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <p class="card-label">
+                                    Activity
+                                </p>
+
+                                <h3>
+                                    Recent Transactions
+                                </h3>
+
+                            </div>
+
+                            <a href="expense.html">
+                                Add new
+                            </a>
+
+                        </div>
+
+
+                        <div class="transaction-list">
+
+                            <!-- GROCERIES -->
+                            <div class="transaction-item">
+
+                                <div class="transaction-icon">
+                                    <i data-lucide="shopping-basket"></i>
+                                </div>
+
+                                <div class="transaction-main">
+
+                                    <strong>
+                                        Groceries
+                                    </strong>
+
+                                    <span>
+                                        Checkers · Today
+                                    </span>
+
+                                </div>
+
+                                <div class="transaction-amount">
+                                    -R180
+                                </div>
+
+                            </div>
+
+
+                            <!-- TRANSPORT -->
+                            <div class="transaction-item">
+
+                                <div class="transaction-icon">
+                                    <i data-lucide="bus-front"></i>
+                                </div>
+
+                                <div class="transaction-main">
+
+                                    <strong>
+                                        Transport
+                                    </strong>
+
+                                    <span>
+                                        Taxi · Yesterday
+                                    </span>
+
+                                </div>
+
+                                <div class="transaction-amount">
+                                    -R35
+                                </div>
+
+                            </div>
+
+
+                            <!-- DATA -->
+                            <div class="transaction-item">
+
+                                <div class="transaction-icon">
+                                    <i data-lucide="smartphone"></i>
+                                </div>
+
+                                <div class="transaction-main">
+
+                                    <strong>
+                                        Data
+                                    </strong>
+
+                                    <span>
+                                        Mobile data · 12 Sep
+                                    </span>
+
+                                </div>
+
+                                <div class="transaction-amount">
+                                    -R50
+                                </div>
+
+                            </div>
+
+
+                            <!-- FAMILY -->
+                            <div class="transaction-item">
+
+                                <div class="transaction-icon">
+                                    <i data-lucide="heart-handshake"></i>
+                                </div>
+
+                                <div class="transaction-main">
+
+                                    <strong>
+                                        Family Support
+                                    </strong>
+
+                                    <span>
+                                        Transfer · 10 Sep
+                                    </span>
+
+                                </div>
+
+                                <div class="transaction-amount">
+                                    -R250
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- INSIGHT -->
+                    <article class="card card-green">
+
+                        <div class="card-heading">
+
+                            <div>
+
+                                <p class="card-label">
+                                    LastTill insight
+                                </p>
+
+                                <h3>
+                                    You’re improving
+                                </h3>
+
+                            </div>
+
+                            <div class="card-icon">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+
+                        </div>
+
+
+                        <p class="goal-note">
+
+                            Your average daily spending is lower than
+                            last week. Keep this pace and you're more
+                            likely to reach month-end safely.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>
