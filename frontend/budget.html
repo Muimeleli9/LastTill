@@ -8,15 +8,17 @@
     <title>LastTill | Budget</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="budget" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
     <div class="app-layout">
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
 
             <a href="dashboard.html" class="brand">
                 <div class="brand-logo">L</div>
@@ -62,12 +64,9 @@
 
                 <button class="sidebar-profile" id="profileButton">
 
-                    <div class="profile-avatar">R</div>
+                    <div class="profile-avatar" aria-hidden="true"></div>
 
-                    <div class="profile-details">
-                        <strong>Rita Nkosi</strong>
-                        <span>Student</span>
-                    </div>
+                    <div class="profile-details"><strong></strong><span></span></div>
 
                     <i data-lucide="chevron-up" class="profile-chevron"></i>
 
@@ -85,7 +84,7 @@
                         Settings
                     </a>
 
-                    <a href="index.html" class="logout-link">
+                    <a href="login.html" class="logout-link">
                         <i data-lucide="log-out"></i>
                         Log Out
                     </a>
@@ -97,173 +96,9 @@
         </aside>
 
 
-        <main class="app-main">
-
-            <header class="page-header">
-
-                <div class="page-title">
-                    <p class="eyebrow">Monthly plan</p>
-                    <h1>Your Budget</h1>
-                    <p>
-                        Track how much you're using in each category.
-                    </p>
-                </div>
-
-                <button class="btn btn-primary">
-                    <i data-lucide="plus"></i>
-                    Add Category
-                </button>
-
-            </header>
-
-
-            <section class="content-grid-2">
-
-                <article class="card card-green">
-
-                    <div class="card-heading">
-                        <div>
-                            <p class="card-label">Budget overview</p>
-                            <h3>September Budget</h3>
-                        </div>
-                    </div>
-
-                    <div class="summary-stat">
-                        <span>Total monthly income</span>
-                        <strong>R1,716</strong>
-                    </div>
-
-                    <div class="summary-stat" style="margin-top:12px;">
-                        <span>Total budgeted</span>
-                        <strong>R1,400</strong>
-                    </div>
-
-                </article>
-
-
-                <article class="card">
-
-                    <div class="card-heading">
-                        <div>
-                            <p class="card-label">This month</p>
-                            <h3>Budget Health</h3>
-                        </div>
-                    </div>
-
-                    <div class="summary-stat">
-                        <span>Amount spent</span>
-                        <strong>R1,030</strong>
-                    </div>
-
-                    <div class="summary-stat" style="margin-top:12px;">
-                        <span>Budget remaining</span>
-                        <strong>R370</strong>
-                    </div>
-
-                </article>
-
-            </section>
-
-
-            <section style="margin-top:22px;">
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Categories</p>
-                            <h3>Spending Limits</h3>
-                        </div>
-
-                    </div>
-
-
-                    <div class="budget-item">
-
-                        <div class="budget-row">
-                            <span>Groceries</span>
-                            <strong>R500 / R550</strong>
-                        </div>
-
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width:91%;"></div>
-                        </div>
-
-                        <span class="progress-caption">
-                            R50 remaining
-                        </span>
-
-                    </div>
-
-
-                    <div class="budget-item">
-
-                        <div class="budget-row">
-                            <span>Transport</span>
-                            <strong>R180 / R300</strong>
-                        </div>
-
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width:60%;"></div>
-                        </div>
-
-                        <span class="progress-caption">
-                            R120 remaining
-                        </span>
-
-                    </div>
-
-
-                    <div class="budget-item">
-
-                        <div class="budget-row">
-                            <span>Family Support</span>
-                            <strong>R250 / R250</strong>
-                        </div>
-
-                        <div class="progress-track">
-                            <div class="progress-fill warning" style="width:100%;"></div>
-                        </div>
-
-                        <span class="progress-caption">
-                            Fully used
-                        </span>
-
-                    </div>
-
-
-                    <div class="budget-item">
-
-                        <div class="budget-row">
-                            <span>Social</span>
-                            <strong>R80 / R150</strong>
-                        </div>
-
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width:53%;"></div>
-                        </div>
-
-                        <span class="progress-caption">
-                            R70 remaining
-                        </span>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-        </main>
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
 
     </div>
-
-
-    <script src="js/script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
 
 </body>
 

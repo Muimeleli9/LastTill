@@ -8,15 +8,17 @@
     <title>LastTill | Add Expense</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="expense" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
     <div class="app-layout">
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
 
             <a href="dashboard.html" class="brand">
                 <div class="brand-logo">L</div>
@@ -62,12 +64,9 @@
 
                 <button class="sidebar-profile" id="profileButton">
 
-                    <div class="profile-avatar">R</div>
+                    <div class="profile-avatar" aria-hidden="true"></div>
 
-                    <div class="profile-details">
-                        <strong>Rita Nkosi</strong>
-                        <span>Student</span>
-                    </div>
+                    <div class="profile-details"><strong></strong><span></span></div>
 
                     <i data-lucide="chevron-up" class="profile-chevron"></i>
 
@@ -85,7 +84,7 @@
                         Settings
                     </a>
 
-                    <a href="index.html" class="logout-link">
+                    <a href="login.html" class="logout-link">
                         <i data-lucide="log-out"></i>
                         Log Out
                     </a>
@@ -97,207 +96,9 @@
         </aside>
 
 
-        <main class="app-main">
-
-            <header class="page-header">
-
-                <div class="page-title">
-                    <p class="eyebrow">Track spending</p>
-                    <h1>Add Expense</h1>
-                    <p>
-                        Record what you spent so your budget stays updated.
-                    </p>
-                </div>
-
-            </header>
-
-
-            <section class="content-grid-2">
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">New transaction</p>
-                            <h3>Expense details</h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="receipt-text"></i>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group full">
-
-                            <label>Expense name</label>
-
-                            <input
-                                class="form-control"
-                                type="text"
-                                placeholder="e.g. Groceries at Checkers">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Amount</label>
-
-                            <input
-                                class="form-control"
-                                type="number"
-                                placeholder="R180">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Category</label>
-
-                            <select class="form-control">
-
-                                <option>Groceries</option>
-                                <option>Transport</option>
-                                <option>Family Support</option>
-                                <option>Social</option>
-                                <option>Food & Dining</option>
-                                <option>Data & Airtime</option>
-                                <option>Personal</option>
-                                <option>Other</option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Date</label>
-
-                            <input
-                                class="form-control"
-                                type="date">
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>Payment Method</label>
-
-                            <select class="form-control">
-                                <option>Bank Card</option>
-                                <option>Cash</option>
-                                <option>Transfer</option>
-                                <option>Mobile Payment</option>
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label>Note</label>
-
-                            <textarea
-                                class="form-control"
-                                placeholder="Optional note..."></textarea>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <a href="dashboard.html" class="btn btn-secondary">
-                            Cancel
-                        </a>
-
-                        <button class="btn btn-primary">
-                            <i data-lucide="save"></i>
-                            Save Expense
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <div class="dashboard-column">
-
-                    <article class="card card-green">
-
-                        <div class="card-heading">
-
-                            <div>
-                                <p class="card-label">This month</p>
-                                <h3>Spending Summary</h3>
-                            </div>
-
-                        </div>
-
-                        <div class="summary-stat">
-                            <span>Total spent</span>
-                            <strong>R860</strong>
-                        </div>
-
-                        <div class="summary-stat" style="margin-top:12px;">
-                            <span>Remaining</span>
-                            <strong>R856</strong>
-                        </div>
-
-                        <div class="summary-stat" style="margin-top:12px;">
-                            <span>Safe daily spending</span>
-                            <strong>R47.56</strong>
-                        </div>
-
-                    </article>
-
-
-                    <article class="card tillcheck-feature">
-
-                        <div class="card-heading">
-
-                            <div>
-                                <p class="card-label">Before spending</p>
-                                <h3>Not sure?</h3>
-                            </div>
-
-                        </div>
-
-                        <p>
-                            If you haven't made the purchase yet,
-                            use TillCheck first.
-                        </p>
-
-                        <a href="tillcheck.html" class="btn btn-primary btn-full">
-                            <i data-lucide="scan-line"></i>
-                            Open TillCheck
-                        </a>
-
-                    </article>
-
-                </div>
-
-            </section>
-
-        </main>
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
 
     </div>
-
-
-    <script src="js/script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
 
 </body>
 

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LastTill | Register</title>
+    <title>LastTill | Sign Up</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="register">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
     <main class="auth-page">
 
@@ -33,99 +33,11 @@
             </div>
 
 
-            <div class="auth-content">
-
-                <p class="eyebrow">
-                    Create your account
-                </p>
-
-                <h1>
-                    What best describes you?
-                </h1>
-
-                <p>
-                    Choose the option that matches your financial lifestyle.
-                    LastTill will personalise your budgeting and spending
-                    experience around it.
-                </p>
-
-
-                <div class="user-type-grid">
-
-                    <a href="dashboard.html" class="user-type-card">
-
-                        <div class="user-type-icon">
-                            <i data-lucide="graduation-cap"></i>
-                        </div>
-
-                        <h3>Student</h3>
-
-                        <p>
-                            Manage allowances, bursaries, food, transport,
-                            data, social spending and savings goals.
-                        </p>
-
-                        <div class="choose-link">
-                            Choose Student
-                            <i data-lucide="arrow-right"></i>
-                        </div>
-
-                    </a>
-
-
-                    <a href="dashboard.html" class="user-type-card">
-
-                        <div class="user-type-icon">
-                            <i data-lucide="briefcase-business"></i>
-                        </div>
-
-                        <h3>Employed</h3>
-
-                        <p>
-                            Manage salary, rent, debit orders, bills,
-                            monthly expenses and savings.
-                        </p>
-
-                        <div class="choose-link">
-                            Choose Employed
-                            <i data-lucide="arrow-right"></i>
-                        </div>
-
-                    </a>
-
-
-                    <a href="dashboard.html" class="user-type-card">
-
-                        <div class="user-type-icon">
-                            <i data-lucide="chart-no-axes-combined"></i>
-                        </div>
-
-                        <h3>Entrepreneur</h3>
-
-                        <p>
-                            Manage business income, operating expenses,
-                            cash flow, stock and business goals.
-                        </p>
-
-                        <div class="choose-link">
-                            Choose Entrepreneur
-                            <i data-lucide="arrow-right"></i>
-                        </div>
-
-                    </a>
-
-                </div>
-
-            </div>
+            <div class="auth-content" id="auth-content"><h1>Sign Up</h1><p>Loading secure registration…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></div>
 
         </section>
 
     </main>
-
-
-    <script>
-        lucide.createIcons();
-    </script>
 
 </body>
 

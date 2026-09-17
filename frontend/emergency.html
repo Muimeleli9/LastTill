@@ -8,15 +8,17 @@
     <title>LastTill | Emergency Fund</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="emergency" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
     <div class="app-layout">
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
 
             <a href="dashboard.html" class="brand">
                 <div class="brand-logo">L</div>
@@ -62,12 +64,9 @@
 
                 <button class="sidebar-profile" id="profileButton">
 
-                    <div class="profile-avatar">R</div>
+                    <div class="profile-avatar" aria-hidden="true"></div>
 
-                    <div class="profile-details">
-                        <strong>Rita Nkosi</strong>
-                        <span>Student</span>
-                    </div>
+                    <div class="profile-details"><strong></strong><span></span></div>
 
                     <i data-lucide="chevron-up" class="profile-chevron"></i>
 
@@ -85,7 +84,7 @@
                         Settings
                     </a>
 
-                    <a href="index.html" class="logout-link">
+                    <a href="login.html" class="logout-link">
                         <i data-lucide="log-out"></i>
                         Log Out
                     </a>
@@ -97,166 +96,9 @@
         </aside>
 
 
-        <main class="app-main">
-
-            <header class="page-header">
-
-                <div class="page-title">
-                    <p class="eyebrow">Protected money</p>
-                    <h1>Emergency Fund</h1>
-                    <p>
-                        Keep emergency money separate from normal spending.
-                    </p>
-                </div>
-
-                <button class="btn btn-primary">
-                    <i data-lucide="plus"></i>
-                    Add Money
-                </button>
-
-            </header>
-
-
-            <section class="content-grid-2">
-
-                <article class="card card-warning">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Emergency balance</p>
-                            <h3>Your Protected Fund</h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="shield-check"></i>
-                        </div>
-
-                    </div>
-
-                    <div class="emergency-amount">
-                        <strong>R85</strong>
-                        <span>remaining from R150</span>
-                    </div>
-
-                    <div class="progress-track">
-                        <div class="progress-fill warning" style="width:57%;"></div>
-                    </div>
-
-                    <p class="goal-note">
-                        57% of your emergency fund is still available.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Emergency use</p>
-                            <h3>Use Emergency Money</h3>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Amount
-                        </label>
-
-                        <input
-                            class="form-control"
-                            type="number"
-                            placeholder="R65">
-
-                    </div>
-
-                    <div class="form-group" style="margin-top:18px;">
-
-                        <label>
-                            Reason
-                        </label>
-
-                        <select class="form-control">
-
-                            <option>Medication</option>
-                            <option>Transport Emergency</option>
-                            <option>Urgent Food</option>
-                            <option>Family Emergency</option>
-                            <option>Other</option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="form-actions">
-
-                        <button class="btn btn-primary btn-full">
-                            <i data-lucide="shield-minus"></i>
-                            Use Emergency Fund
-                        </button>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-
-            <section style="margin-top:22px;">
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Example</p>
-                            <h3>Medication Expense</h3>
-                        </div>
-
-                    </div>
-
-
-                    <div class="tillcheck-preview">
-
-                        <div class="tillcheck-stat">
-                            <span>Emergency fund before</span>
-                            <strong>R150</strong>
-                        </div>
-
-                        <div class="tillcheck-arrow">
-                            <i data-lucide="arrow-right"></i>
-                        </div>
-
-                        <div class="tillcheck-stat">
-                            <span>After R65 medication</span>
-                            <strong>R85</strong>
-                        </div>
-
-                    </div>
-
-                    <div class="status-box status-warning">
-                        This R65 comes from the emergency fund,
-                        not your ordinary spending money.
-                    </div>
-
-                </article>
-
-            </section>
-
-        </main>
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
 
     </div>
-
-
-    <script src="js/script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
 
 </body>
 

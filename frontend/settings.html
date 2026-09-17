@@ -8,14 +8,17 @@
     <title>LastTill | Settings</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="settings" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
     <div class="app-layout">
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
 
             <a href="dashboard.html" class="brand">
                 <div class="brand-logo">L</div>
@@ -61,12 +64,9 @@
 
                 <button class="sidebar-profile" id="profileButton">
 
-                    <div class="profile-avatar">R</div>
+                    <div class="profile-avatar" aria-hidden="true"></div>
 
-                    <div class="profile-details">
-                        <strong>Rita Nkosi</strong>
-                        <span>Student</span>
-                    </div>
+                    <div class="profile-details"><strong></strong><span></span></div>
 
                     <i data-lucide="chevron-up" class="profile-chevron"></i>
 
@@ -84,7 +84,7 @@
                         Settings
                     </a>
 
-                    <a href="index.html" class="logout-link">
+                    <a href="login.html" class="logout-link">
                         <i data-lucide="log-out"></i>
                         Log Out
                     </a>
@@ -96,206 +96,9 @@
         </aside>
 
 
-        <main class="app-main">
-
-            <header class="page-header">
-
-                <div class="page-title">
-                    <p class="eyebrow">Preferences</p>
-                    <h1>Settings</h1>
-                    <p>
-                        Control how LastTill works for your account.
-                    </p>
-                </div>
-
-            </header>
-
-
-            <section class="content-grid-2">
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Account</p>
-                            <h3>Account Settings</h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="user-cog"></i>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Account type</label>
-
-                        <select class="form-control">
-                            <option selected>Student</option>
-                            <option>Employed</option>
-                            <option>Entrepreneur</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-top:18px;">
-                        <label>Currency</label>
-
-                        <select class="form-control">
-                            <option selected>ZAR — South African Rand (R)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="margin-top:18px;">
-                        <label>Monthly cycle</label>
-
-                        <select class="form-control">
-                            <option selected>1st to month-end</option>
-                            <option>Salary date to next salary date</option>
-                        </select>
-                    </div>
-
-                </article>
-
-
-                <article class="card card-green">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Notifications</p>
-                            <h3>Money Alerts</h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="bell-ring"></i>
-                        </div>
-
-                    </div>
-
-
-                    <label style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        gap:16px;
-                        padding:16px 0;
-                        border-bottom:1px solid #e5ece3;
-                    ">
-
-                        <div>
-                            <strong>Budget warnings</strong>
-                            <p style="
-                                margin-top:4px;
-                                font-size:12px;
-                                color:#718074;
-                            ">
-                                Warn me when a category is almost full.
-                            </p>
-                        </div>
-
-                        <input type="checkbox" checked>
-
-                    </label>
-
-
-                    <label style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        gap:16px;
-                        padding:16px 0;
-                        border-bottom:1px solid #e5ece3;
-                    ">
-
-                        <div>
-                            <strong>TillCheck warnings</strong>
-                            <p style="
-                                margin-top:4px;
-                                font-size:12px;
-                                color:#718074;
-                            ">
-                                Alert me when a purchase could hurt my month.
-                            </p>
-                        </div>
-
-                        <input type="checkbox" checked>
-
-                    </label>
-
-
-                    <label style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        gap:16px;
-                        padding:16px 0;
-                    ">
-
-                        <div>
-                            <strong>Savings reminders</strong>
-                            <p style="
-                                margin-top:4px;
-                                font-size:12px;
-                                color:#718074;
-                            ">
-                                Remind me to contribute toward my goal.
-                            </p>
-                        </div>
-
-                        <input type="checkbox" checked>
-
-                    </label>
-
-                </article>
-
-            </section>
-
-
-            <section style="margin-top:22px;">
-
-                <article class="card card-warning">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Session</p>
-                            <h3>Account Access</h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="log-out"></i>
-                        </div>
-
-                    </div>
-
-                    <p class="emergency-copy">
-                        Sign out of LastTill on this device.
-                    </p>
-
-                    <div style="margin-top:18px;">
-
-                        <a href="index.html" class="btn btn-secondary">
-                            <i data-lucide="log-out"></i>
-                            Log Out
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-        </main>
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
 
     </div>
-
-
-    <script src="js/script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
 
 </body>
 

@@ -8,15 +8,17 @@
     <title>LastTill | Savings Goal</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="savings" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
     <div class="app-layout">
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
 
             <a href="dashboard.html" class="brand">
                 <div class="brand-logo">L</div>
@@ -62,12 +64,9 @@
 
                 <button class="sidebar-profile" id="profileButton">
 
-                    <div class="profile-avatar">R</div>
+                    <div class="profile-avatar" aria-hidden="true"></div>
 
-                    <div class="profile-details">
-                        <strong>Rita Nkosi</strong>
-                        <span>Student</span>
-                    </div>
+                    <div class="profile-details"><strong></strong><span></span></div>
 
                     <i data-lucide="chevron-up" class="profile-chevron"></i>
 
@@ -85,7 +84,7 @@
                         Settings
                     </a>
 
-                    <a href="index.html" class="logout-link">
+                    <a href="login.html" class="logout-link">
                         <i data-lucide="log-out"></i>
                         Log Out
                     </a>
@@ -97,106 +96,9 @@
         </aside>
 
 
-        <main class="app-main">
-
-            <header class="page-header">
-
-                <div class="page-title">
-                    <p class="eyebrow">Your end goal</p>
-                    <h1>Savings Goal</h1>
-                    <p>
-                        Give your savings a purpose and track progress.
-                    </p>
-                </div>
-
-                <button class="btn btn-primary">
-                    <i data-lucide="plus"></i>
-                    New Goal
-                </button>
-
-            </header>
-
-
-            <section class="content-grid-2">
-
-                <article class="card card-green">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Current goal</p>
-                            <h3>Headphones</h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="headphones"></i>
-                        </div>
-
-                    </div>
-
-                    <div class="goal-number">
-                        <strong>R300</strong>
-                        <span>saved of R2,000</span>
-                    </div>
-
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width:15%;"></div>
-                    </div>
-
-                    <p class="goal-note">
-                        You are 15% of the way there.
-                    </p>
-
-                </article>
-
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">Make progress</p>
-                            <h3>Add to Savings</h3>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Amount to save
-                        </label>
-
-                        <input
-                            class="form-control"
-                            type="number"
-                            placeholder="R100">
-
-                    </div>
-
-                    <div class="form-actions">
-
-                        <button class="btn btn-primary btn-full">
-                            <i data-lucide="plus"></i>
-                            Add to Goal
-                        </button>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-        </main>
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
 
     </div>
-
-
-    <script src="js/script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
 
 </body>
 
