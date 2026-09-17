@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LastTill | TillCheck</title>
-
-  <script type="module" crossorigin src="./assets/script-B9Rd22Pg.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/script-DwOBx6DW.css">
+
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('lasttill.theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        } catch (error) {
+            document.documentElement.dataset.theme = 'light';
+        }
+    </script>
+  <script type="module" crossorigin src="./assets/script-D4wmLxM_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/script-DS4wHRfv.css">
 </head>
 
 <body data-page="tillcheck" data-protected="true">
@@ -56,6 +65,17 @@
                     <i data-lucide="shield-plus"></i>
                     Emergency Fund
                 </a>
+
+                <a href="history.html" class="nav-link">
+                    <i data-lucide="history"></i>
+                    Spending History
+                </a>
+
+                <button class="theme-toggle" type="button" aria-pressed="false">
+                    <i data-lucide="moon" class="icon-moon"></i>
+                    <i data-lucide="sun" class="icon-sun"></i>
+                    <span class="theme-label">Dark mode</span>
+                </button>
 
             </nav>
 

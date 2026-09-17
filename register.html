@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LastTill | Sign Up</title>
-
-  <script type="module" crossorigin src="./assets/script-B9Rd22Pg.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/script-DwOBx6DW.css">
+
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('lasttill.theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        } catch (error) {
+            document.documentElement.dataset.theme = 'light';
+        }
+    </script>
+  <script type="module" crossorigin src="./assets/script-D4wmLxM_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/script-DS4wHRfv.css">
 </head>
 
 <body data-page="register">
@@ -25,10 +34,19 @@
                     Back
                 </a>
 
-                <a href="index.html" class="brand">
-                    <div class="brand-logo">L</div>
-                    <div class="brand-name">LastTill</div>
-                </a>
+                <div class="welcome-top">
+
+                    <a href="index.html" class="brand">
+                        <div class="brand-logo">L</div>
+                        <div class="brand-name">LastTill</div>
+                    </a>
+
+                    <button class="theme-toggle theme-toggle-compact" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+                        <i data-lucide="moon" class="icon-moon"></i>
+                        <i data-lucide="sun" class="icon-sun"></i>
+                    </button>
+
+                </div>
 
             </div>
 
