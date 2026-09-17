@@ -1464,6 +1464,485 @@ textarea.form-control {
     }
 
 }
+/* =========================================================
+   SPENDING HISTORY
+   ========================================================= */
+
+.history-month-selector {
+    background: var(--navy);
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 18px 24px;
+
+    margin-bottom: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 32px;
+
+    box-shadow:
+        0 12px 30px rgba(23, 37, 84, 0.12);
+}
+
+.month-arrow {
+    width: 39px;
+    height: 39px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.10);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.month-arrow:hover {
+    background: var(--blue);
+}
+
+.month-arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+.selected-month {
+    min-width: 190px;
+    text-align: center;
+}
+
+.selected-month span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.selected-month strong {
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.history-summary-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.history-summary-card {
+    padding: 19px;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    box-shadow: var(--shadow);
+}
+
+.history-summary-icon {
+    width: 39px;
+    height: 39px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: var(--ice-blue);
+    color: var(--blue);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-summary-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.history-summary-card span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--text-soft);
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.history-summary-card strong {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+.history-summary-card small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--text-light);
+
+    font-size: 8px;
+}
+
+.history-summary-card.remaining {
+    background: var(--ice-blue);
+}
+
+
+/* =========================================================
+   HISTORY LAYOUT
+   ========================================================= */
+
+.history-layout {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1.6fr) minmax(270px, 0.75fr);
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+.history-main-column,
+.history-side-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   CATEGORY BREAKDOWN
+   ========================================================= */
+
+.history-category {
+    padding: 17px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.history-category:first-of-type {
+    padding-top: 0;
+}
+
+.history-category:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.history-category-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    margin-bottom: 10px;
+}
+
+.history-category-name {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.category-circle {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 10px;
+
+    background: var(--ice-blue);
+    color: var(--blue);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-circle svg {
+    width: 16px;
+    height: 16px;
+}
+
+.history-category-name strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: var(--text);
+
+    font-size: 11px;
+}
+
+.history-category-name span {
+    color: var(--text-light);
+
+    font-size: 9px;
+}
+
+.history-category-amount {
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+.history-progress-info {
+    margin-top: 6px;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--text-light);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   TRANSACTION COUNT
+   ========================================================= */
+
+.history-transaction-count {
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    background: var(--ice-blue);
+    color: var(--blue);
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MONTH RESULT
+   ========================================================= */
+
+.history-result-card {
+    text-align: center;
+}
+
+.history-result-icon {
+    width: 44px;
+    height: 44px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 13px;
+
+    background: var(--ice-blue);
+    color: var(--blue);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-result-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.history-result-card h3 {
+    color: var(--text);
+
+    font-size: 15px;
+}
+
+.history-result-amount {
+    margin-top: 18px;
+
+    color: var(--navy);
+
+    font-size: 34px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.history-result-label {
+    margin-top: 2px;
+
+    color: var(--text-soft);
+
+    font-size: 10px;
+}
+
+.history-result-divider {
+    height: 1px;
+
+    margin: 19px 0;
+
+    background: var(--border);
+}
+
+.history-result-row {
+    padding: 6px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--text-soft);
+
+    font-size: 10px;
+}
+
+.history-result-row strong {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   INSIGHT
+   ========================================================= */
+
+.history-insight-text {
+    margin-bottom: 15px;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PREVIOUS MONTHS
+   ========================================================= */
+
+.previous-month-card {
+    width: 100%;
+
+    padding: 13px 4px;
+
+    border-bottom: 1px solid var(--border);
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.previous-month-card:last-child {
+    border-bottom: none;
+}
+
+.previous-month-card strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--text);
+
+    font-size: 11px;
+}
+
+.previous-month-card span {
+    color: var(--text-light);
+
+    font-size: 9px;
+}
+
+.previous-month-card svg {
+    width: 16px;
+    height: 16px;
+
+    color: var(--text-light);
+
+    transition: 0.2s ease;
+}
+
+.previous-month-card:hover strong {
+    color: var(--blue);
+}
+
+.previous-month-card:hover svg {
+    color: var(--blue);
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   HISTORY RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .history-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .history-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .history-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-month-selector {
+        gap: 14px;
+        padding: 16px;
+    }
+
+    .selected-month {
+        min-width: 150px;
+    }
+
+    .history-category-name span {
+        display: none;
+    }
+}
 
 /* Shared interactive states and secure account pages */
 [hidden] { display: none !important; }
