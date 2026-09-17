@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LastTill | Dashboard</title>
+
+  <script type="module" crossorigin src="./assets/script-B9Rd22Pg.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/script-DwOBx6DW.css">
+</head>
+
+<body data-page="dashboard" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
+
+            <a href="dashboard.html" class="brand">
+                <div class="brand-logo">L</div>
+                <div class="brand-name">LastTill</div>
+            </a>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="nav-link active">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </a>
+
+                <a href="expense.html" class="nav-link">
+                    <i data-lucide="circle-plus"></i>
+                    Add Expense
+                </a>
+
+                <a href="budget.html" class="nav-link">
+                    <i data-lucide="wallet-cards"></i>
+                    Budget
+                </a>
+
+                <a href="tillcheck.html" class="nav-link">
+                    <i data-lucide="circle-check-big"></i>
+                    TillCheck
+                </a>
+
+                <a href="savings.html" class="nav-link">
+                    <i data-lucide="target"></i>
+                    Savings Goal
+                </a>
+
+                <a href="emergency.html" class="nav-link">
+                    <i data-lucide="shield-plus"></i>
+                    Emergency Fund
+                </a>
+
+            </nav>
+
+
+            <!-- PROFILE -->
+            <div class="profile-menu-wrapper">
+
+                <button class="sidebar-profile" id="profileButton" type="button">
+
+                    <div class="profile-avatar" aria-hidden="true"></div>
+
+                    <div class="profile-details"><strong></strong><span></span></div>
+
+                    <i data-lucide="chevron-up" class="profile-chevron"></i>
+
+                </button>
+
+
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <a href="profile.html">
+                        <i data-lucide="user"></i>
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        <i data-lucide="settings"></i>
+                        Settings
+                    </a>
+
+                    <a href="login.html" class="logout-link">
+                        <i data-lucide="log-out"></i>
+                        Log Out
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
+
+    </div>
+
+</body>
+
+</html>
