@@ -38,6 +38,17 @@ export async function allGoals(id) {
     if (batch.length < 500) return rows;
   }
 }
+export async function monthExpenses(userId, start, end) {
+  const rows = [];
+  for (let offset = 0; ; offset += 500) {
+    const batch = await result(getClient().from('expenses').select('*').eq('user_id', userId)
+      .gte('expense_date', start).lt('expense_date', end)
+      .order('expense_date', { ascending: false }).order('expense_id', { ascending: false })
+      .range(offset, offset + 499));
+    rows.push(...batch);
+    if (batch.length < 500) return rows;
+  }
+}
 export const saveSettings = (id, data) => result(getClient().from('user_settings').update(data).eq('user_id', id).select().single());
 export const markRead = (id, userId) => result(getClient().from('notifications').update({ is_read: true }).eq('notification_id', id).eq('user_id', userId).select().single());
 export async function unreadCount(userId) {

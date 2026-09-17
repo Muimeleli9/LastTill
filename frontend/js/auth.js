@@ -3,7 +3,7 @@ import * as api from './api.js';
 import { ACCOUNT_TYPES, CYCLES } from './finance.js';
 import { field, select, form, bindForm, click, message, errorText, escapeHTML as e, refreshIcons } from './ui.js';
 
-const protectedPages = ['dashboard.html', 'budget.html', 'expense.html', 'savings.html', 'emergency.html', 'tillcheck.html', 'profile.html', 'settings.html'];
+const protectedPages = ['dashboard.html', 'budget.html', 'expense.html', 'savings.html', 'emergency.html', 'tillcheck.html', 'history.html', 'profile.html', 'settings.html'];
 export function safeDestination(value) { return protectedPages.includes(value) ? value : 'dashboard.html'; }
 export function callbackURL(recovery = false) {
   const url = new URL('auth-callback.html', location.href);

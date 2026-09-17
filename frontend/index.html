@@ -7,6 +7,15 @@
 
     <title>LastTill | Make Your Money Last</title>
 
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('lasttill.theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        } catch (error) {
+            document.documentElement.dataset.theme = 'light';
+        }
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="js/script.js"></script>
 </head>
@@ -20,10 +29,19 @@
 
             <div class="welcome-left">
 
-                <a href="index.html" class="brand">
-                    <div class="brand-logo">L</div>
-                    <div class="brand-name">LastTill</div>
-                </a>
+                <div class="welcome-top">
+
+                    <a href="index.html" class="brand">
+                        <div class="brand-logo">L</div>
+                        <div class="brand-name">LastTill</div>
+                    </a>
+
+                    <button class="theme-toggle theme-toggle-compact" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+                        <i data-lucide="moon" class="icon-moon"></i>
+                        <i data-lucide="sun" class="icon-sun"></i>
+                    </button>
+
+                </div>
 
                 <div class="welcome-copy">
 

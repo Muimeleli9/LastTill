@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { mockSupabase } from './mock.js';
+import { today } from '../../frontend/js/finance.js';
 
 const pages = [
   ['dashboard', 'Hello, Alex'], ['budget', 'Your Budget'], ['expense', 'Add Expense'],
   ['savings', 'Savings Goals'], ['emergency', 'Emergency Fund'], ['tillcheck', 'TillCheck'],
-  ['profile', 'My Profile'], ['settings', 'Settings']
+  ['history', 'Spending History'], ['profile', 'My Profile'], ['settings', 'Settings']
 ];
 for (const mobile of [false, true]) {
   test(`all application pages render real empty states at ${mobile ? 'mobile' : 'desktop'} width`, async ({ page }, testInfo) => {
@@ -349,6 +350,70 @@ test('expense histories request bounded pages and navigate in both directions', 
   await page.getByRole('button', { name: 'Previous', exact: true }).click();
   await expect(page.getByText('Page 1', { exact: true })).toBeVisible();
   expect(offsets).toEqual([0, 10, 0]);
+});
+
+test('spending history isolates each month and flags overspending in red', async ({ page }) => {
+  const mock = await mockSupabase(page);
+  const month = today().slice(0, 7);
+  const previous = new Date(`${month}-01T12:00:00Z`);
+  previous.setUTCMonth(previous.getUTCMonth() - 1);
+  const lastMonth = previous.toISOString().slice(0, 7);
+  mock.tables.income_sources.push({ income_id: 1, name: 'Salary', amount: '500', received_date: `${month}-01` });
+  mock.tables.expenses.push(
+    { expense_id: 2, name: 'Groceries run', category_id: 1, amount: '400', expense_date: `${month}-05`, payment_method: 'Cash' },
+    { expense_id: 1, name: 'Taxi fare', category_id: 2, amount: '200', expense_date: `${month}-10`, payment_method: 'Cash' },
+    { expense_id: 3, name: 'Old purchase', category_id: 1, amount: '50', expense_date: `${lastMonth}-15`, payment_method: 'Cash' }
+  );
+  await page.goto('/history.html');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Spending History');
+  await expect(page.getByText('2 transactions', { exact: true })).toBeVisible();
+  await expect(page.locator('.transaction-item')).toHaveCount(2);
+  await expect(page.getByText('Income overspent')).toBeVisible();
+  await expect(page.locator('.status-danger')).toContainText('income recorded for this month');
+  await expect(page.getByRole('button', { name: 'Next month' })).toBeDisabled();
+  await page.getByRole('button', { name: 'Previous month' }).click();
+  await expect(page).toHaveURL(new RegExp(`month=${lastMonth}$`));
+  await expect(page.getByText('1 transaction', { exact: true })).toBeVisible();
+  await expect(page.locator('.transaction-item')).toHaveCount(1);
+  await expect(page.locator('.status-danger')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Next month' }).click();
+  await expect(page.getByText('2 transactions', { exact: true })).toBeVisible();
+});
+
+test('overspending the recorded income shows red warnings on the dashboard', async ({ page }) => {
+  const mock = await mockSupabase(page);
+  const month = today().slice(0, 7);
+  mock.tables.income_sources.push({ income_id: 1, name: 'Salary', amount: '500', received_date: `${month}-01` });
+  mock.tables.expenses.push({ expense_id: 1, name: 'Groceries run', category_id: 1, amount: '600', expense_date: `${month}-05`, payment_method: 'Cash' });
+  await page.goto('/dashboard.html');
+  await expect(page.getByRole('heading', { name: 'Hello, Alex' })).toBeVisible();
+  await expect(page.locator('.balance-shortfall')).toBeVisible();
+  await expect(page.locator('.status-danger')).toContainText('over your income by');
+});
+
+test('TillCheck flags purchases that would overspend remaining income', async ({ page }) => {
+  const mock = await mockSupabase(page);
+  await page.goto('/tillcheck.html');
+  await page.getByLabel('What do you want to buy?').fill('Concert ticket');
+  await page.getByLabel('Price (ZAR)').fill('150');
+  await page.getByRole('button', { name: 'Check purchase', exact: true }).click();
+  await expect(page.locator('.tillcheck-badge.danger')).toBeVisible();
+  await expect(page.locator('.status-danger')).toContainText('overspend your income');
+  await expect(page.locator('.check-verdict.danger')).toBeVisible();
+});
+
+test('theme toggle switches palettes and persists the choice across pages', async ({ page }) => {
+  await mockSupabase(page, { signedIn: false });
+  await page.goto('/login.html');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await page.getByRole('button', { name: 'Switch to dark mode' }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  expect(await page.evaluate(() => localStorage.getItem('lasttill.theme'))).toBe('dark');
+  await page.goto('/register.html');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.getByRole('button', { name: 'Switch to light mode' }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  expect(await page.evaluate(() => localStorage.getItem('lasttill.theme'))).toBe('light');
 });
 
 test('marking a notification read refreshes the exact unread count', async ({ page }) => {

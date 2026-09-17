@@ -7,694 +7,120 @@
 
     <title>LastTill | Spending History</title>
 
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('lasttill.theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        } catch (error) {
+            document.documentElement.dataset.theme = 'light';
+        }
+    </script>
+
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="js/script.js"></script>
 </head>
 
-<body>
+<body data-page="history" data-protected="true">
+    <noscript><p class="feedback feedback-error">Enable JavaScript to use LastTill securely.</p></noscript>
 
-<div class="app-layout">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="mobile-bar"><a href="dashboard.html" class="brand-name">LastTill</a><button id="mobile-menu-toggle" type="button" class="btn btn-secondary" aria-expanded="false" aria-controls="app-navigation">Menu</button></div>
+    <div class="app-layout">
 
-    <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar" id="app-navigation" aria-label="Main navigation">
 
-    <aside class="sidebar">
-
-        <a href="dashboard.html" class="brand">
-            <div class="brand-logo">L</div>
-            <div class="brand-name">LastTill</div>
-        </a>
-
-        <nav class="sidebar-nav">
-
-            <a href="dashboard.html" class="nav-link">
-                <i data-lucide="layout-dashboard"></i>
-                Dashboard
+            <a href="dashboard.html" class="brand">
+                <div class="brand-logo">L</div>
+                <div class="brand-name">LastTill</div>
             </a>
 
-            <a href="expense.html" class="nav-link">
-                <i data-lucide="circle-plus"></i>
-                Add Expense
-            </a>
+            <nav class="sidebar-nav">
 
-            <a href="budget.html" class="nav-link">
-                <i data-lucide="wallet-cards"></i>
-                Budget
-            </a>
-
-            <a href="tillcheck.html" class="nav-link">
-                <i data-lucide="circle-check-big"></i>
-                TillCheck
-            </a>
-
-            <a href="savings.html" class="nav-link">
-                <i data-lucide="target"></i>
-                Savings Goal
-            </a>
-
-            <a href="emergency.html" class="nav-link">
-                <i data-lucide="shield-plus"></i>
-                Emergency Fund
-            </a>
-
-            <!-- NEW -->
-            <a href="history.html" class="nav-link active">
-                <i data-lucide="history"></i>
-                Spending History
-            </a>
-
-        </nav>
-
-
-        <!-- PROFILE -->
-
-        <div class="profile-menu-wrapper">
-
-            <button
-                class="sidebar-profile"
-                id="profileButton"
-                type="button"
-            >
-
-                <div class="profile-avatar">
-                    R
-                </div>
-
-                <div class="profile-details">
-                    <strong>Rita Nkosi</strong>
-                    <span>Student</span>
-                </div>
-
-                <i
-                    data-lucide="chevron-up"
-                    class="profile-chevron"
-                ></i>
-
-            </button>
-
-
-            <div
-                class="profile-dropdown"
-                id="profileDropdown"
-            >
-
-                <a href="profile.html">
-                    <i data-lucide="user"></i>
-                    Profile
+                <a href="dashboard.html" class="nav-link">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
                 </a>
 
-                <a href="settings.html">
-                    <i data-lucide="settings"></i>
-                    Settings
+                <a href="expense.html" class="nav-link">
+                    <i data-lucide="circle-plus"></i>
+                    Add Expense
                 </a>
 
-                <a href="index.html" class="logout-link">
-                    <i data-lucide="log-out"></i>
-                    Log Out
+                <a href="budget.html" class="nav-link">
+                    <i data-lucide="wallet-cards"></i>
+                    Budget
                 </a>
 
-            </div>
+                <a href="tillcheck.html" class="nav-link">
+                    <i data-lucide="circle-check-big"></i>
+                    TillCheck
+                </a>
 
-        </div>
+                <a href="savings.html" class="nav-link">
+                    <i data-lucide="target"></i>
+                    Savings Goal
+                </a>
 
-    </aside>
+                <a href="emergency.html" class="nav-link">
+                    <i data-lucide="shield-plus"></i>
+                    Emergency Fund
+                </a>
 
-
-    <!-- ================= MAIN ================= -->
-
-    <main class="app-main">
-
-        <!-- HEADER -->
-
-        <header class="page-header">
-
-            <div class="page-title">
-
-                <p class="eyebrow">
-                    Your money over time
-                </p>
-
-                <h1>
+                <a href="history.html" class="nav-link active">
+                    <i data-lucide="history"></i>
                     Spending History
-                </h1>
+                </a>
 
-                <p>
-                    Look back at how you managed your money each month.
-                </p>
+                <button class="theme-toggle" type="button" aria-pressed="false">
+                    <i data-lucide="moon" class="icon-moon"></i>
+                    <i data-lucide="sun" class="icon-sun"></i>
+                    <span class="theme-label">Dark mode</span>
+                </button>
+
+            </nav>
+
+
+            <div class="profile-menu-wrapper">
+
+                <button class="sidebar-profile" id="profileButton">
+
+                    <div class="profile-avatar" aria-hidden="true"></div>
+
+                    <div class="profile-details"><strong></strong><span></span></div>
+
+                    <i data-lucide="chevron-up" class="profile-chevron"></i>
+
+                </button>
+
+                <div class="profile-dropdown" id="profileDropdown">
+
+                    <a href="profile.html">
+                        <i data-lucide="user"></i>
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        <i data-lucide="settings"></i>
+                        Settings
+                    </a>
+
+                    <a href="login.html" class="logout-link">
+                        <i data-lucide="log-out"></i>
+                        Log Out
+                    </a>
+
+                </div>
 
             </div>
 
-        </header>
+        </aside>
 
 
-        <!-- ================= MONTH SELECTOR ================= -->
+        <main class="app-main" id="main-content"><p class="empty-state" role="status">Loading your account…</p><div id="feedback" tabindex="-1" hidden aria-live="polite"></div></main>
 
-        <section class="history-month-selector">
-
-            <button
-                class="month-arrow"
-                type="button"
-                aria-label="Previous month"
-            >
-                <i data-lucide="chevron-left"></i>
-            </button>
-
-            <div class="selected-month">
-
-                <span>Viewing</span>
-
-                <strong>
-                    September 2026
-                </strong>
-
-            </div>
-
-            <button
-                class="month-arrow"
-                type="button"
-                aria-label="Next month"
-            >
-                <i data-lucide="chevron-right"></i>
-            </button>
-
-        </section>
-
-
-        <!-- ================= MONTH SUMMARY ================= -->
-
-        <section class="history-summary-grid">
-
-            <article class="history-summary-card">
-
-                <div class="history-summary-icon">
-                    <i data-lucide="wallet"></i>
-                </div>
-
-                <div>
-                    <span>Monthly Income</span>
-                    <strong>R1,716</strong>
-                    <small>September income</small>
-                </div>
-
-            </article>
-
-
-            <article class="history-summary-card">
-
-                <div class="history-summary-icon">
-                    <i data-lucide="receipt-text"></i>
-                </div>
-
-                <div>
-                    <span>Total Spent</span>
-                    <strong>R860</strong>
-                    <small>50% of income</small>
-                </div>
-
-            </article>
-
-
-            <article class="history-summary-card remaining">
-
-                <div class="history-summary-icon">
-                    <i data-lucide="piggy-bank"></i>
-                </div>
-
-                <div>
-                    <span>Remaining</span>
-                    <strong>R856</strong>
-                    <small>Money still available</small>
-                </div>
-
-            </article>
-
-
-            <article class="history-summary-card">
-
-                <div class="history-summary-icon">
-                    <i data-lucide="calendar-days"></i>
-                </div>
-
-                <div>
-                    <span>Days Remaining</span>
-                    <strong>18</strong>
-                    <small>Until month-end</small>
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- ================= CONTENT ================= -->
-
-        <section class="history-layout">
-
-
-            <!-- LEFT -->
-
-            <div class="history-main-column">
-
-
-                <!-- SPENDING BREAKDOWN -->
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">
-                                Where your money went
-                            </p>
-
-                            <h3>
-                                Spending Breakdown
-                            </h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="chart-no-axes-column"></i>
-                        </div>
-
-                    </div>
-
-
-                    <!-- GROCERIES -->
-
-                    <div class="history-category">
-
-                        <div class="history-category-top">
-
-                            <div class="history-category-name">
-                                <div class="category-circle">
-                                    <i data-lucide="shopping-basket"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Groceries</strong>
-                                    <span>Largest spending category</span>
-                                </div>
-                            </div>
-
-                            <strong class="history-category-amount">
-                                R500
-                            </strong>
-
-                        </div>
-
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill budget-warning"
-                                style="width: 91%;"
-                            ></div>
-                        </div>
-
-                        <div class="history-progress-info">
-                            <span>R500 of R550</span>
-                            <span>91%</span>
-                        </div>
-
-                    </div>
-
-
-                    <!-- TRANSPORT -->
-
-                    <div class="history-category">
-
-                        <div class="history-category-top">
-
-                            <div class="history-category-name">
-
-                                <div class="category-circle">
-                                    <i data-lucide="bus-front"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Transport</strong>
-                                    <span>Travel and commuting</span>
-                                </div>
-
-                            </div>
-
-                            <strong class="history-category-amount">
-                                R180
-                            </strong>
-
-                        </div>
-
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill budget-safe"
-                                style="width: 60%;"
-                            ></div>
-                        </div>
-
-                        <div class="history-progress-info">
-                            <span>R180 of R300</span>
-                            <span>60%</span>
-                        </div>
-
-                    </div>
-
-
-                    <!-- FAMILY SUPPORT -->
-
-                    <div class="history-category">
-
-                        <div class="history-category-top">
-
-                            <div class="history-category-name">
-
-                                <div class="category-circle">
-                                    <i data-lucide="heart-handshake"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Family Support</strong>
-                                    <span>Family contributions</span>
-                                </div>
-
-                            </div>
-
-                            <strong class="history-category-amount">
-                                R250
-                            </strong>
-
-                        </div>
-
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill budget-full"
-                                style="width: 100%;"
-                            ></div>
-                        </div>
-
-                        <div class="history-progress-info">
-                            <span>R250 of R250</span>
-                            <span>100%</span>
-                        </div>
-
-                    </div>
-
-
-                    <!-- SOCIAL -->
-
-                    <div class="history-category">
-
-                        <div class="history-category-top">
-
-                            <div class="history-category-name">
-
-                                <div class="category-circle">
-                                    <i data-lucide="users"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Social</strong>
-                                    <span>Entertainment and outings</span>
-                                </div>
-
-                            </div>
-
-                            <strong class="history-category-amount">
-                                R80
-                            </strong>
-
-                        </div>
-
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill budget-safe"
-                                style="width: 53%;"
-                            ></div>
-                        </div>
-
-                        <div class="history-progress-info">
-                            <span>R80 of R150</span>
-                            <span>53%</span>
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- TRANSACTION HISTORY -->
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">
-                                September activity
-                            </p>
-
-                            <h3>
-                                Transactions
-                            </h3>
-                        </div>
-
-                        <div class="history-transaction-count">
-                            4 transactions
-                        </div>
-
-                    </div>
-
-
-                    <div class="transaction-list">
-
-                        <div class="transaction-item">
-
-                            <div class="transaction-icon">
-                                <i data-lucide="shopping-basket"></i>
-                            </div>
-
-                            <div class="transaction-main">
-                                <strong>Checkers</strong>
-                                <span>Groceries · 15 Sep 2026</span>
-                            </div>
-
-                            <div class="transaction-amount">
-                                -R180
-                            </div>
-
-                        </div>
-
-
-                        <div class="transaction-item">
-
-                            <div class="transaction-icon">
-                                <i data-lucide="bus-front"></i>
-                            </div>
-
-                            <div class="transaction-main">
-                                <strong>Taxi</strong>
-                                <span>Transport · 14 Sep 2026</span>
-                            </div>
-
-                            <div class="transaction-amount">
-                                -R35
-                            </div>
-
-                        </div>
-
-
-                        <div class="transaction-item">
-
-                            <div class="transaction-icon">
-                                <i data-lucide="smartphone"></i>
-                            </div>
-
-                            <div class="transaction-main">
-                                <strong>Mobile Data</strong>
-                                <span>Data · 12 Sep 2026</span>
-                            </div>
-
-                            <div class="transaction-amount">
-                                -R50
-                            </div>
-
-                        </div>
-
-
-                        <div class="transaction-item">
-
-                            <div class="transaction-icon">
-                                <i data-lucide="heart-handshake"></i>
-                            </div>
-
-                            <div class="transaction-main">
-                                <strong>Family Support</strong>
-                                <span>Transfer · 10 Sep 2026</span>
-                            </div>
-
-                            <div class="transaction-amount">
-                                -R250
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <!-- ================= RIGHT ================= -->
-
-            <div class="history-side-column">
-
-
-                <!-- MONTH RESULT -->
-
-                <article class="card history-result-card">
-
-                    <div class="history-result-icon">
-                        <i data-lucide="calendar-check"></i>
-                    </div>
-
-                    <p class="card-label">
-                        Month summary
-                    </p>
-
-                    <h3>
-                        September so far
-                    </h3>
-
-                    <div class="history-result-amount">
-                        R856
-                    </div>
-
-                    <p class="history-result-label">
-                        remaining
-                    </p>
-
-                    <div class="history-result-divider"></div>
-
-                    <div class="history-result-row">
-                        <span>Income used</span>
-                        <strong>50%</strong>
-                    </div>
-
-                    <div class="history-result-row">
-                        <span>Safe daily spend</span>
-                        <strong>R47.56</strong>
-                    </div>
-
-                </article>
-
-
-                <!-- INSIGHT -->
-
-                <article class="card card-green">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">
-                                Spending insight
-                            </p>
-
-                            <h3>
-                                Your month at a glance
-                            </h3>
-                        </div>
-
-                        <div class="card-icon">
-                            <i data-lucide="sparkles"></i>
-                        </div>
-
-                    </div>
-
-                    <p class="history-insight-text">
-
-                        Groceries are currently your largest
-                        spending category and are close to the
-                        monthly limit.
-
-                    </p>
-
-                    <div class="status-box status-warning">
-
-                        You've used 91% of your groceries budget.
-                        R50 remains.
-
-                    </div>
-
-                </article>
-
-
-                <!-- PREVIOUS MONTHS -->
-
-                <article class="card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <p class="card-label">
-                                Quick access
-                            </p>
-
-                            <h3>
-                                Previous Months
-                            </h3>
-                        </div>
-
-                    </div>
-
-
-                    <button class="previous-month-card">
-
-                        <div>
-                            <strong>August 2026</strong>
-                            <span>View spending summary</span>
-                        </div>
-
-                        <i data-lucide="chevron-right"></i>
-
-                    </button>
-
-
-                    <button class="previous-month-card">
-
-                        <div>
-                            <strong>July 2026</strong>
-                            <span>View spending summary</span>
-                        </div>
-
-                        <i data-lucide="chevron-right"></i>
-
-                    </button>
-
-
-                    <button class="previous-month-card">
-
-                        <div>
-                            <strong>June 2026</strong>
-                            <span>View spending summary</span>
-                        </div>
-
-                        <i data-lucide="chevron-right"></i>
-
-                    </button>
-
-                </article>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-
-<script src="js/script.js"></script>
-
-<script>
-    lucide.createIcons();
-</script>
+    </div>
 
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 import { createIcons, icons } from 'lucide';
-import { money, percent, today } from './finance.js';
+import { money, percent, today, cents } from './finance.js';
 
 export const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const icon = name => `<i data-lucide="${escapeHTML(name)}" aria-hidden="true"></i>`;
@@ -40,13 +40,19 @@ export function form(id, body, label, note = '') {
 }
 export function progress(value, target) {
   const width = percent(value, target);
-  return `<div class="progress-track" role="progressbar" aria-label="Progress" aria-valuenow="${Math.round(width)}" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill ${width >= 90 ? 'warning' : ''}" style="width:${width}%"></div></div>`;
+  const tone = width >= 100 ? 'danger' : width >= 90 ? 'warning' : '';
+  return `<div class="progress-track" role="progressbar" aria-label="Progress" aria-valuenow="${Math.round(width)}" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill ${tone}" style="width:${width}%"></div></div>`;
 }
 export function categoryCards(categories) {
-  return categories.length ? categories.map(row => `<div class="budget-item"><div class="budget-row"><span>${escapeHTML(row.name)}</span><strong>${escapeHTML(money(row.spent_amount))} / ${escapeHTML(money(row.limit_amount))}</strong></div>${progress(row.spent_amount, row.limit_amount)}<span class="progress-caption">${escapeHTML(money(Number(row.limit_amount) - Number(row.spent_amount)))} remaining</span></div>`).join('') : empty('No category limits yet. Add them on the Budget page.');
+  return categories.length ? categories.map(row => {
+    const spent = cents(row.spent_amount); const limit = cents(row.limit_amount);
+    const over = spent > limit;
+    return `<div class="budget-item"><div class="budget-row"><span>${escapeHTML(row.name)}</span><strong class="${over ? 'history-negative' : ''}">${escapeHTML(money(row.spent_amount))} / ${escapeHTML(money(row.limit_amount))}</strong></div>${progress(row.spent_amount, row.limit_amount)}<span class="progress-caption${over ? ' over' : ''}">${over ? `${escapeHTML(money((spent - limit) / 100))} over the limit` : `${escapeHTML(money((limit - spent) / 100))} remaining`}</span></div>`;
+  }).join('') : empty('No category limits yet. Add them on the Budget page.');
 }
 export function summaryCards(summary) {
-  return `<section class="balance-hero"><div><p>Income received this cycle</p><h2>${escapeHTML(money(summary.income))}</h2><small>${escapeHTML(summary.start)} to ${escapeHTML(summary.end)} (next reset)</small></div><div class="balance-divider"></div><div><p>Cycle spendable money</p><h2>${escapeHTML(money(summary.remaining))}</h2><div class="balance-meta"><span>${escapeHTML(summary.days)} days including today</span><span>Safe daily: <strong>${escapeHTML(money(summary.safe_daily))}</strong></span></div></div></section>`;
+  const shortfall = Number(summary.remaining) < 0;
+  return `<section class="balance-hero${shortfall ? ' balance-shortfall' : ''}"><div><p>Income received this cycle</p><h2>${escapeHTML(money(summary.income))}</h2><small>${escapeHTML(summary.start)} to ${escapeHTML(summary.end)} (next reset)</small></div><div class="balance-divider"></div><div><p>Cycle spendable money</p><h2>${escapeHTML(money(summary.remaining))}</h2><div class="balance-meta"><span>${escapeHTML(summary.days)} days including today</span><span>Safe daily: <strong>${escapeHTML(money(summary.safe_daily))}</strong></span></div></div></section>`;
 }
 export function dateField(name, label, value = today()) {
   return field(name, label, value, 'date', `min="1900-01-01" max="${today()}" required`);

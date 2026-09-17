@@ -1,12 +1,16 @@
 import { initAuth, requireUser, watchSession, signOut } from './auth.js';
 import { refreshIcons, message, errorText, mount } from './ui.js';
+import { initTheme } from './theme.js';
 import { dashboard } from './pages/dashboard.js';
 import { budgetPage } from './pages/budget.js';
 import { expensePage } from './pages/expense.js';
 import { savingsPage } from './pages/savings.js';
 import { emergencyPage } from './pages/emergency.js';
 import { tillcheckPage } from './pages/tillcheck.js';
+import { historyPage } from './pages/history.js';
 import { accountPage, renderIdentity } from './pages/account.js';
+
+initTheme();
 
 const profileButton = document.getElementById("profileButton");
 const profileWrapper = document.querySelector(".profile-menu-wrapper");
@@ -70,7 +74,7 @@ async function start() {
         if (!context) return;
         renderIdentity(context.profile);
         const pages = { dashboard, budget: budgetPage, expense: expensePage, savings: savingsPage,
-            emergency: emergencyPage, tillcheck: tillcheckPage,
+            emergency: emergencyPage, tillcheck: tillcheckPage, history: historyPage,
             profile: accountPage, settings: ctx => accountPage(ctx, true) };
         if (!pages[page]) throw new Error('Page not found.');
         await pages[page](context);

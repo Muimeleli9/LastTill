@@ -7,6 +7,15 @@
 
     <title>LastTill | Savings Goal</title>
 
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('lasttill.theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (prefersDark ? 'dark' : 'light');
+        } catch (error) {
+            document.documentElement.dataset.theme = 'light';
+        }
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="js/script.js"></script>
 </head>
@@ -61,6 +70,12 @@
                     <i data-lucide="history"></i>
                     Spending History 
                 </a>
+
+                <button class="theme-toggle" type="button" aria-pressed="false">
+                    <i data-lucide="moon" class="icon-moon"></i>
+                    <i data-lucide="sun" class="icon-sun"></i>
+                    <span class="theme-label">Dark mode</span>
+                </button>
 
             </nav>
 

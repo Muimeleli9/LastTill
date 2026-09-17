@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
 const pages = ['index', 'register', 'login', 'auth-callback', 'reset-password', 'onboarding',
-  'dashboard', 'budget', 'expense', 'savings', 'emergency', 'tillcheck', 'profile', 'settings'];
+  'dashboard', 'budget', 'expense', 'savings', 'emergency', 'tillcheck', 'history', 'profile', 'settings'];
 export default defineConfig({
   root: 'frontend', envDir: '..', base: './',
   server: { port: 5173, strictPort: true },

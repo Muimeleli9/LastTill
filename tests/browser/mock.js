@@ -90,6 +90,31 @@ export async function mockSupabase(page, { signedIn = true, onboarded = true, fa
       Object.assign(row, body);
       return respond(row);
     }
+    if (req.method() === 'GET') {
+      // PostgREST-style table reads: apply eq/gt/gte/lt/lte filters, ordering and offset/limit paging.
+      let rows = [...(tables[name] || [])];
+      const operators = { eq: (a, b) => a === b, gt: (a, b) => a > b, gte: (a, b) => a >= b, lt: (a, b) => a < b, lte: (a, b) => a <= b };
+      for (const [column, filter] of url.searchParams.entries()) {
+        const match = /^(eq|gt|gte|lt|lte)\.(.+)$/.exec(filter);
+        if (!match) continue;
+        rows = rows.filter(row => row[column] === undefined || operators[match[1]](String(row[column]), match[2]));
+      }
+      const order = url.searchParams.get('order');
+      if (order) {
+        const columns = order.split(',').map(part => part.split('.'));
+        rows.sort((a, b) => {
+          for (const [column, direction] of columns) {
+            const compared = String(a[column] ?? '').localeCompare(String(b[column] ?? ''), undefined, { numeric: true });
+            if (compared) return direction === 'desc' ? -compared : compared;
+          }
+          return 0;
+        });
+      }
+      const offset = Number(url.searchParams.get('offset') ?? 0);
+      const limit = url.searchParams.get('limit');
+      if (limit !== null) rows = rows.slice(offset, offset + Number(limit));
+      return respond(rows);
+    }
     return respond(tables[name] || []);
   });
   return { user, profile, tables, preferences, requests };
