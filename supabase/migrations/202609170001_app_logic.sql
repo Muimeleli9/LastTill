@@ -396,6 +396,9 @@ begin
       values(u,checked.category_id,checked.item_name,checked.amount,public.lt_today(),
         (p->>'payment_method')::public.payment_method_enum,'Recorded from TillCheck #'||checked.check_id);
     update public.tillcheck_history set was_purchased=true where check_id=id returning to_jsonb(tillcheck_history.*) into result;
+  when 'clear_tillchecks' then
+    with removed as (delete from public.tillcheck_history where user_id=u returning 1)
+    select jsonb_build_object('cleared',count(*)) into result from removed;
   else raise exception 'Unknown operation';
   end case;
   if result is null then raise exception 'Record not found or not owned by this account' using errcode='42501'; end if;
@@ -410,7 +413,7 @@ declare a text;
 begin
   foreach a in array array['save_profile','save_income','delete_income','save_category','delete_category',
     'save_expense','delete_expense','save_goal','cancel_goal','contribute','save_fund','fund_transaction',
-    'check_purchase','purchase_check'] loop
+    'check_purchase','purchase_check','clear_tillchecks'] loop
     execute format('create or replace function public.lt_%I(p_data jsonb) returns jsonb language sql security definer set search_path='''' as %L',
       a,format('select public.lt_write(%L,p_data)',a));
   end loop;
@@ -453,7 +456,7 @@ declare a text;
 begin
   foreach a in array array['save_profile','save_income','delete_income','save_category','delete_category',
     'save_expense','delete_expense','save_goal','cancel_goal','contribute','save_fund','fund_transaction',
-    'check_purchase','purchase_check'] loop
+    'check_purchase','purchase_check','clear_tillchecks'] loop
     execute format('grant execute on function public.lt_%I(jsonb) to authenticated',a);
   end loop;
 end $$;

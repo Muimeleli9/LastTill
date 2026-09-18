@@ -57,10 +57,10 @@ export function summaryCards(summary) {
 export function dateField(name, label, value = today()) {
   return field(name, label, value, 'date', `min="1900-01-01" max="${today()}" required`);
 }
-export function mount(title, subtitle, body) {
+export function mount(title, subtitle, body, actions = '') {
   const main = document.querySelector('.app-main');
   if (!main || main.dataset.signedOut) return;
-  main.innerHTML = `<header class="page-header"><div class="page-title"><p class="eyebrow">Your LastTill</p><h1 tabindex="-1">${escapeHTML(title)}</h1><p>${escapeHTML(subtitle)}</p></div></header><div id="feedback" tabindex="-1" hidden aria-live="polite"></div>${body}`;
+  main.innerHTML = `<header class="page-header"><div class="page-title"><p class="eyebrow">Your LastTill</p><h1 tabindex="-1">${escapeHTML(title)}</h1><p>${escapeHTML(subtitle)}</p></div>${actions ? `<div class="header-actions">${actions}</div>` : ''}</header><div id="feedback" tabindex="-1" hidden aria-live="polite"></div>${body}`;
   refreshIcons();
 }
 export function bindForm(id, handler, success = 'Saved successfully.', financial = true) {

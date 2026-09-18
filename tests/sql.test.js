@@ -88,6 +88,16 @@ test('TillCheck snapshots do not spend money; confirmation is idempotent', async
   assert.equal((await db.query('select * from expenses')).rows.length, 1);
   assert.equal((await budget()).categories[0].spent_amount, 150);
 });
+test('clearing TillCheck history removes only the caller rows', async () => {
+  await asUser(other);
+  await rpc('check_purchase', { item_name: 'Other user check', category_id: 1, amount: '1' });
+  assert.equal((await rpc('clear_tillchecks', {})).cleared, 1);
+  assert.equal((await db.query('select * from tillcheck_history')).rows.length, 0);
+  await asUser();
+  assert.equal((await db.query('select * from tillcheck_history')).rows.length, 1);
+  assert.equal((await rpc('clear_tillchecks', {})).cleared, 1);
+  assert.equal((await db.query('select * from tillcheck_history')).rows.length, 0);
+});
 test('milestone notifications are unique and only read state is client-editable', async () => {
   const count = (await db.query('select * from notifications')).rows.length;
   await rpc('save_category', { month, category_id: 1, limit_amount: '100' });

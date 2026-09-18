@@ -402,6 +402,28 @@ test('TillCheck flags purchases that would overspend remaining income', async ({
   await expect(page.locator('.check-verdict.danger')).toBeVisible();
 });
 
+test('TillCheck history clears only after the confirmation is accepted', async ({ page }) => {
+  const mock = await mockSupabase(page);
+  const dialogs = [];
+  let accept = false;
+  page.on('dialog', dialog => { dialogs.push(dialog.message()); return accept ? dialog.accept() : dialog.dismiss(); });
+  await page.goto('/tillcheck.html');
+  await page.getByLabel('What do you want to buy?').fill('Dinner');
+  await page.getByLabel('Price (ZAR)').fill('20');
+  await page.getByRole('button', { name: 'Check purchase', exact: true }).click();
+  await expect(page.locator('.record-row')).toHaveCount(1);
+  await page.getByRole('button', { name: 'Clear history' }).click();
+  expect(dialogs.some(text => /cannot be undone/i.test(text))).toBeTruthy();
+  expect(mock.requests.filter(r => r.path.endsWith('/lt_clear_tillchecks'))).toHaveLength(0);
+  await expect(page.locator('.record-row')).toHaveCount(1);
+  accept = true;
+  await page.getByRole('button', { name: 'Clear history' }).click();
+  await expect(page.locator('#feedback')).toContainText('Check history cleared');
+  await expect(page.locator('.record-row')).toHaveCount(0);
+  expect(mock.tables.tillcheck_history).toHaveLength(0);
+  expect(mock.requests.filter(r => r.path.endsWith('/lt_clear_tillchecks'))).toHaveLength(1);
+});
+
 test('theme toggle switches palettes and persists the choice across pages', async ({ page }) => {
   await mockSupabase(page, { signedIn: false });
   await page.goto('/login.html');
@@ -420,10 +442,18 @@ test('marking a notification read refreshes the exact unread count', async ({ pa
   const mock = await mockSupabase(page);
   mock.tables.notifications.push({ notification_id: 1, title: 'Savings milestone', message: 'You reached 50%.', is_read: false, created_at: '2026-01-01T12:00:00Z' });
   await page.goto('/dashboard.html');
-  await expect(page.getByRole('heading', { name: 'Notifications · 1 unread' })).toBeVisible();
+  const bell = page.getByRole('button', { name: /Notifications/ });
+  await expect(bell).toHaveAttribute('aria-label', 'Notifications: 1 unread');
+  await expect(page.locator('.notification-count')).toHaveText('1');
+  await bell.click();
+  await expect(page.locator('.notification-dropdown')).toBeVisible();
+  await expect(page.locator('.notification-item.unread')).toHaveCount(1);
   await page.getByRole('button', { name: 'Mark read' }).click();
-  await expect(page.getByRole('heading', { name: 'Notifications · 0 unread' })).toBeVisible();
+  await expect(page.locator('.notification-count')).toHaveCount(0);
+  await expect(bell).toHaveAttribute('aria-label', 'Notifications');
   expect(mock.tables.notifications[0].is_read).toBe(true);
+  await bell.click();
+  await expect(page.locator('.notification-dropdown')).toBeHidden();
 });
 
 test('an expired auth session leaves the protected page without personal reads', async ({ page }) => {

@@ -75,6 +75,7 @@ export async function mockSupabase(page, { signedIn = true, onboarded = true, fa
       if (name === 'lt_purchase_check') {
         const row = tables.tillcheck_history.find(r => r.check_id === Number(data.id)); row.was_purchased = true; return respond(row);
       }
+      if (name === 'lt_clear_tillchecks') { const cleared = tables.tillcheck_history.length; tables.tillcheck_history = []; return respond({ cleared }); }
       const deletes = { lt_delete_expense: ['expenses', 'expense_id'], lt_delete_income: ['income_sources', 'income_id'], lt_delete_category: ['budget_categories', 'budget_category_id'] };
       if (deletes[name]) { const [table, key] = deletes[name]; tables[table] = tables[table].filter(row => row[key] !== Number(data.id)); return respond({ id: data.id }); }
       if (name === 'lt_cancel_goal') { const row = tables.savings_goals.find(r => r.goal_id === Number(data.id)); row.status = 'cancelled'; return respond(row); }

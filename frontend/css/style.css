@@ -708,6 +708,13 @@ svg {
     font-weight: 800;
 }
 
+.card-heading .btn {
+    min-height: 38px;
+    padding: 0 16px;
+
+    font-size: 12px;
+}
+
 .card-label {
     font-size: 10px;
     letter-spacing: 1.4px;
@@ -1327,6 +1334,9 @@ textarea.form-control {
 
     width: 360px;
 
+    max-height: min(70vh, 560px);
+    overflow-y: auto;
+
     background: white;
 
     border-radius: 18px;
@@ -1340,7 +1350,7 @@ textarea.form-control {
     display: none;
 }
 
-.notification-wrapper:hover .notification-dropdown {
+.notification-wrapper.open .notification-dropdown {
     display: block;
 }
 
@@ -1382,6 +1392,32 @@ textarea.form-control {
 
 .notification-item:last-child {
     border-bottom: none;
+}
+
+.notification-item.unread .notification-content strong::before {
+    content: '';
+
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 999px;
+
+    background: var(--green-500);
+
+    margin-right: 7px;
+
+    vertical-align: 1px;
+}
+
+.notification-content .btn {
+    min-height: 32px;
+    padding: 4px 12px;
+
+    font-size: 11px;
+
+    margin-top: 8px;
 }
 
 .notification-icon {
@@ -1459,11 +1495,19 @@ textarea.form-control {
 
 /* MOBILE */
 
+@media (max-width: 850px) {
+
+    .page-header .header-actions {
+        align-self: flex-end;
+    }
+
+}
+
 @media (max-width: 600px) {
 
     .notification-dropdown {
-        width: 300px;
-        right: -60px;
+        width: min(300px, calc(100vw - 30px));
+        right: 0;
     }
 
 }
@@ -2337,6 +2381,11 @@ body[data-page="reset-password"] .form-grid { grid-template-columns: 1fr; }
 
 [data-theme="dark"] .notification-count {
     border-color: #1a251e;
+}
+
+[data-theme="dark"] .notification-header,
+[data-theme="dark"] .notification-item {
+    border-bottom-color: #26332a;
 }
 
 [data-theme="dark"] .account-type-picker .user-type-card:has(input:checked) {

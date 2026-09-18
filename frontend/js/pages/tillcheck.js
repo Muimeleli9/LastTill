@@ -1,6 +1,6 @@
 import * as api from '../api.js';
 import { money, dateLabel, PAYMENTS, classifyCheck } from '../finance.js';
-import { mount, card, stat, empty, summaryCards, field, select, form, bindForm, button, click, escapeHTML as e, pagination, wirePagination } from '../ui.js';
+import { mount, card, stat, empty, summaryCards, field, select, form, bindForm, button, click, message, escapeHTML as e, pagination, wirePagination } from '../ui.js';
 
 export async function tillcheckPage({ user }) {
   const categories = await api.categories();
@@ -27,17 +27,24 @@ export async function tillcheckPage({ user }) {
     mount('TillCheck', 'Understand a purchase before you spend. Your emergency money stays protected.', summaryCards(summary) + `<section class="content-grid-2">` +
       card('Can I afford this?', form('check-form', field('item_name', 'What do you want to buy?', '', 'text', 'required maxlength="150"') + field('amount', 'Price (ZAR)', '', 'number', 'required') + select('category_id', 'Category', categories.map(row => [row.category_id, row.name]), '', 'required'), 'Check purchase')) +
       card('Purchase impact', result, 'card-green') + '</section><section class="section-gap">' +
-      card('Check history', (history.rows.length ? history.rows.map(row => {
+      `<article class="card"><div class="card-heading"><h2>Check history</h2>${history.rows.length ? button('Clear history', 'clear-history') : ''}</div>` +
+      (history.rows.length ? history.rows.map(row => {
         const verdict = classifyCheck(row);
         const tone = verdictTone(verdict);
         return `<div class="record-row"><div><strong>${e(row.item_name)} · ${e(money(row.amount))}</strong><small>${e(dateLabel(row.created_at))} · ${row.was_purchased ? 'Purchased' : 'Not recorded as purchased'}</small></div><div class="inline-actions"><span class="check-verdict ${tone}">${verdict}</span>${button('View check', `view-${row.check_id}`)}</div></div>`;
-      }).join('') : empty('Your checks will appear here.')) + pagination(page, history.hasMore)) + '</section>');
+      }).join('') : empty('Your checks will appear here.')) + pagination(page, history.hasMore) + '</article>' + '</section>');
     bindForm('check-form', async data => { last = await api.rpc('check_purchase', data); await load(0); }, 'Purchase checked. No expense was recorded.');
     bindForm('purchase-form', async data => {
       if (!confirm(`Record an expense of ${money(last.amount)} for “${last.item_name}” today?`)) return false;
       last = await api.rpc('purchase_check', { ...data, id: last.check_id }); await load();
     }, 'Purchase recorded exactly once.');
     history.rows.forEach(row => click(`view-${row.check_id}`, async () => { last = row; await load(); }));
+    click('clear-history', async () => {
+      if (!confirm('Delete your entire TillCheck history? This cannot be undone.')) return;
+      await api.rpc('clear_tillchecks');
+      last = null; await load(0);
+      message('Check history cleared.');
+    });
     wirePagination(page, history.hasMore, load);
   }
   await load();
