@@ -1,77 +1,12 @@
 # LastTill
 
-A personal money-planning web app: calendar-month category budgets, a salary/calendar cash-flow cycle, savings goals, an emergency fund, and TillCheck purchase decisions before you spend.
+LastTill is a personal money-planning web app built to help everyday people — students, employees, and entrepreneurs alike — avoid the stress of running out of cash before their next payday. Instead of treating budgeting as a once-off exercise, LastTill works around real financial cycles: it splits spending into calendar-month categories, tracks a salary-to-salary (or income-to-income) cash-flow cycle, and continuously calculates how much money is safely left to spend each day until the next payout.
 
-Multi-page HTML/CSS/vanilla JavaScript frontend built with Vite, backed by Supabase (Auth + Postgres).
+Beyond day-to-day budgeting, LastTill helps with the bigger picture of financial wellbeing. Users can set and track savings goals for things they're working toward, and keep a separate, protected emergency fund reserved strictly for genuine emergencies like medical costs or urgent transport — kept clearly apart from ordinary spending money so it's never accidentally used up. A standout feature, **TillCheck**, lets users check before they buy something whether that purchase is actually affordable, showing what their remaining budget and safe daily spend would look like immediately after the purchase — turning budgeting from a reactive, after-the-fact record into a proactive decision-making tool.
 
-## Requirements
+Technically, LastTill is a multi-page frontend built with JavaScript, styled with plain CSS, and backed entirely by Supabase for authentication and database storage (PostgreSQL). This keeps the app lightweight, fast, and free to host, while still supporting secure, per-user data through Supabase's Row Level Security.
 
-- Node.js `^20.19.0` or `>=22.12.0` (tested with Node 24) and npm
-- Windows/PowerShell note: if `npm.ps1` is blocked by execution policy, use `npm.cmd` — all commands below use it.
+LastTill was built by Muimeleli Nkhumeleni, Engedzani Mutambedzo, Mulweli Rita Ngwana, and Maleka Shellton.
 
-## 1. Clone the repository
-
-```powershell
-git clone https://github.com/Muimeleli9/LastTill.git
-cd LastTill
-```
-
-## 2. Install dependencies
-
-```powershell
-npm.cmd install
-```
-
-## 3. Add your connection values
-
-Copy the template and fill in your Supabase project's two public values (Supabase Dashboard → Project Settings → API):
-
-```powershell
-Copy-Item .env.example .env
-```
-
-```
-VITE_SUPABASE_URL=https://YOUR-PROJECT.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=YOUR-PUBLISHABLE-KEY
-```
-
-Use only the publishable key (or legacy anon key) — never a service-role key or database password. `.env` is gitignored, and values are read at startup, so restart the dev server after editing.
-
-## 4. Run the app
-
-```powershell
-npm.cmd run dev
-```
-
-Open http://127.0.0.1:5173/ in your browser and sign in.
-
-## Build for production
-
-```powershell
-npm.cmd run build
-npm.cmd run preview
-```
-
-`build` writes the static site to `dist/` (14 pages plus assets), ready to host anywhere; `preview` serves that build locally.
-
-## Optional: run the tests
-
-```powershell
-npm.cmd test              # finance math + in-memory PostgreSQL integration tests
-npm.cmd run test:browser  # Playwright UI tests against a mocked backend
-```
-
-If Playwright's Chromium isn't installed, either run `npx playwright install chromium` or reuse installed Edge:
-
-```powershell
-$env:PLAYWRIGHT_CHANNEL='msedge'; npm.cmd run test:browser
-```
-
-## Project layout
-
-```
-frontend/     Pages and assets (js/ modules, js/pages/ controllers, css/style.css)
-supabase/     Database migration
-tests/        Test suites
-vite.config.js
-```
+- **Backend:** Muimeleli Nkhumeleni and Engedzani Mutambedzo
+- **Frontend & UI/UX design:** Mulweli Rita Ngwana and Maleka Shellton
